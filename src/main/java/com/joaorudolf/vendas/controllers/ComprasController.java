@@ -3,12 +3,19 @@ package com.joaorudolf.vendas.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.joaorudolf.vendas.DTO.ClienteDTO;
 import com.joaorudolf.vendas.DTO.ComprasDTO;
+import com.joaorudolf.vendas.entities.Cliente;
+import com.joaorudolf.vendas.entities.Compras;
 import com.joaorudolf.vendas.services.ComprasService;
 
 @RestController
@@ -22,6 +29,14 @@ public class ComprasController {
 	public ResponseEntity<List<ComprasDTO>> findAll() {
 		List<ComprasDTO> lista = comprasService.findAll();
 		return ResponseEntity.ok(lista);
+	}
+	
+	@PostMapping
+	@ResponseBody
+	public ResponseEntity<ComprasDTO>saveCompras(@RequestBody ComprasDTO comprasDTO) {
+		Compras entidade = comprasService.fromDTO(comprasDTO);
+		comprasService.saveCompras(entidade);
+		return new ResponseEntity<ComprasDTO>(comprasDTO,HttpStatus.CREATED);
 	}
 	
 }

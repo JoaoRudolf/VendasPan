@@ -10,7 +10,6 @@ public class ClienteDTO {
 	
 	
 	public ClienteDTO(Cliente entidade) {
-		super();
 		this.id = entidade.getId();
 		this.nome = entidade.getNome();
 		this.dn = entidade.getDn();
@@ -21,6 +20,10 @@ public class ClienteDTO {
 		this.id = id;
 		this.nome = nome;
 		this.dn = dn;
+	}
+	
+	public ClienteDTO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {

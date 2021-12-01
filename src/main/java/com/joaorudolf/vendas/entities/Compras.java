@@ -26,13 +26,19 @@ public class Compras {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	public Compras(int id, double totalCompra, LocalDate dataCompra) {
+	public Compras(int id, double totalCompra, LocalDate dataCompra, Cliente cliente) {
 		this.id = id;
 		this.totalCompra = totalCompra;
 		this.dataCompra = dataCompra;
+		this.cliente = cliente;
 	}
 	
+
 	public Compras() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Compras(int id) {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -53,6 +59,13 @@ public class Compras {
 	}
 	public void setDataCompra(LocalDate dataCompra) {
 		this.dataCompra = dataCompra;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	
