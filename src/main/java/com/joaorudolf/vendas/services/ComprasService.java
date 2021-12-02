@@ -32,6 +32,16 @@ public class ComprasService {
 		return comprasRepository.save(compras);
 	}
 	
+	public Compras updateCompras(Integer id, Compras updatedCompras) {
+		return comprasRepository.findById(id).map(c -> {
+			c.setTotalCompra(updatedCompras.getTotalCompra());
+			c.setDataCompra(updatedCompras.getDataCompra());
+			c.setCliente(updatedCompras.getCliente());
+			Compras atualizada = comprasRepository.save(c);
+			return atualizada;
+		}).orElse(null);
+	}
+	
 	public Compras fromDTO(ComprasDTO comprasDTO) {
 		Compras entidade = new Compras(
 				0,
